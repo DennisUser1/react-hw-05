@@ -1,0 +1,100 @@
+.notFoundPage {
+    padding: 40px 0;
+    background: #fff;
+    font-family: inherit;
+}
+  
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+  
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+  
+.fourZeroFourBg {
+    background-image: url('https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif');
+    height: 400px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+  
+.title {
+    font-size: 80px;
+    color: #333;
+}
+  
+.subtitle {
+    font-size: 24px;
+    color: #333;
+}
+  
+p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+  
+.link404 {
+    color: #fff;
+    padding: 10px 20px;
+    background: orange;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+}
+  
+.link404:hover {
+    background: darkorange;
+}
+  
+
+@media (max-width: 768px) {
+    .title {
+      font-size: 60px;
+    }
+  
+    .subtitle {
+      font-size: 20px;
+    }
+  
+    p {
+      font-size: 16px;
+    }
+  
+    .link404 {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+}
+  
+@media (max-width: 480px) {
+    .fourZeroFourBg {
+      height: 300px;
+    }
+  
+    .title {
+      font-size: 50px;
+    }
+  
+    .subtitle {
+      font-size: 18px;
+    }
+  
+    p {
+      font-size: 14px;
+    }
+  
+    .link404 {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+}
