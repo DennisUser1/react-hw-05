@@ -1,0 +1,74 @@
+.link {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-decoration: none;
+}
+  
+.imageBox {
+    display: flex;
+    overflow: hidden;
+    border-radius: 16px;
+}
+  
+.posterImage {
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+    transition: transform 0.3s ease;
+}
+
+.posterDefaultImage {
+    height: 350px;
+}
+  
+.item:hover .posterImage {
+    transform: scale(1.1);
+}
+  
+.infoMovie {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #3b444a;
+    font-size: 18px;
+}
+
+.title {
+  font-weight: 700;
+}
+  
+.details {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+  
+.separator {
+    color: #78828a;
+}
+  
+.votes {
+    color: #78828a;
+}
+  
+.rating {
+    color: #78828a;
+    display: inline-flex;  
+    align-items: center; 
+}
+
+.ratingText {
+    margin-left: 6px;
+    font-weight: 600;
+}
+
+.rating .starIcon {
+    transition: fill 0.3s ease; 
+}
+
+.item:hover .rating .starIcon {
+    fill: rgb(211, 137, 0); 
+}
+

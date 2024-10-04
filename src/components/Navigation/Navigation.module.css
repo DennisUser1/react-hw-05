@@ -1,11 +1,22 @@
+header {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   gap: 20px;
+   padding-left: 20px;
+   background-color: black; 
+   color: #ecf0f1; 
+   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); 
+   /* margin-bottom: 50px; */
+}
+
+.logoBox {
+    font-size: 22px;
+}
+
 .navigationBox {
     display: flex;
     gap: 10px;
-    padding-left: 20px;
-    background-color: black; 
-    color: #ecf0f1; 
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3); 
-    margin-bottom: 20px;
 }
 
 .link {

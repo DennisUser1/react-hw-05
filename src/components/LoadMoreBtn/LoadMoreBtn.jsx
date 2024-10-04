@@ -1,9 +1,9 @@
 import styles from "./LoadMoreBtn.module.css";
 
-const LoadMoreBtn = ({ handleMoreClick }) => {
+const LoadMoreBtn = ({ onClick}) => {
   return (
     <div className={styles.loadMoreWrapper}>
-      <button className={styles.btnShowMore} onClick={handleMoreClick}>
+      <button className={styles.btnShowMore} onClick={onClick}>
         Load more
       </button>
     </div>

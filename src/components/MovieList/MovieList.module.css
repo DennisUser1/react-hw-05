@@ -1,0 +1,25 @@
+.listCard {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
+
+.item {
+    border-radius: 16px;
+    width: 233px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+
+

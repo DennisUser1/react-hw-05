@@ -1,7 +1,7 @@
 import { Formik, Form, Field } from "formik";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
-import styles from "./SearchForm.module.css";
+import styles from "./SearchBar.module.css";
 import { IoSearch } from "react-icons/io5";
 
 export default function SearchBar({ onSearch }) { 
@@ -34,10 +34,10 @@ export default function SearchBar({ onSearch }) {
         initialValues={initialValues}
         onSubmit={handleFormSubmit}
       >
-        {({ isSubmitting }) => (
+        {() => (
           <Form className={styles.searchForm}>
             <Field
-              name="search"
+              name="query"
               type="search"
               placeholder="Search Movies..."
               autoComplete="off"
@@ -48,9 +48,9 @@ export default function SearchBar({ onSearch }) {
             <button
               type="submit"
               className={styles.searchButton}
-              disabled={isSubmitting}
             >  
-            <IoSearch size="20"/> {isSubmitting ? "Searching..." : "Search"}
+            <IoSearch className={styles.iconSearch} size="20"/>  
+            Search
             </button>
           </Form>
         )}

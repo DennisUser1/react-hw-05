@@ -1,6 +1,6 @@
 import axios from "axios";
-
 const bearerToken = import.meta.env.VITE_ACCESS_TOKEN;
+
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 axios.defaults.headers.common['Authorization'] = `Bearer ${bearerToken}`;
 
@@ -20,31 +20,49 @@ const options = {
 
 function handleApiError(error) {
   console.error("Error fetching data:", error);
-  if (error.status == 404) {
-    return "Data not found";
-  } else if (error.status == 500) {
-    return "Server error. Please try again later.";
-  } else {
-    return "An unexpected error occurred.";
+
+  if (error.response) {
+    const status = error.response.status;
+    if (status == 404) {
+      return "Data not found";
+    } else if (status == 500) {
+      return "Server error. Please try again later.";
+    }
   }
+  return "An unexpected error occurred.";
 }
 
-export async function fetchMoviesBySearchValue(searchValue) {
+export async function fetchMoviesBySearchValue(searchValue, page = 1) {
+  options.params = {
+    query: searchValue,
+    language: "en-US",
+    page: page, 
+  };
+
   try {
-    const response = await axios.get(
-      `search/movie?page=1&query=${searchValue}`,
-      options
-    );
-    return response.data.results;
+    const response = await axios.get("/search/movie", options);
+    return {
+      results: response.data.results,
+      totalPages: response.data.total_pages,
+    };
   } catch (error) {
     throw handleApiError(error);
   }
 }
 
-export async function getTrendingMovies() {
+export async function getTrendingMovies(page = 1) {
   try {
-    const response = await axios.get("trending/movie/week", options);
-    return response.data.results;
+    const { data } = await axios.get(
+      "trending/movie/day", 
+      {
+        ...options,
+        params: {
+          ...options.params,
+          page,
+        }
+      }
+    );
+    return data;
   } catch (error) {
     throw handleApiError(error);
   }

@@ -1,0 +1,15 @@
+.wrapperHome {
+  /* grid-template-columns: 240px 1fr; */
+  padding: 30px 10px 20px 10px;
+}
+
+.title {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* .loadMoreContainer {
+    grid-column: 1 / -1; 
+    text-align: center; 
+    margin-top: 20px; 
+} */

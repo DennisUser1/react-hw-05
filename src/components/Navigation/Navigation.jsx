@@ -9,7 +9,7 @@ export default function Navigation() {
 
     return (
         <header className={styles.headerBox}>
-            <p className={styles.logoBox}>Filmo</p>
+            <p className={styles.logoBox}>FilMovi</p>
             <nav className={styles.navigationBox}>
                 <NavLink className={buildNavLinkActive} to="/">
                     Home
