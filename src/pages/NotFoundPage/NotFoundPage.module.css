@@ -206,6 +206,11 @@
       height: 340px;
       background-size: cover;
     }
+
+    .contentBox404 {
+      height: 180px;
+      margin-top: 10px;
+    }
   
     .title {
       font-size: 46px;
