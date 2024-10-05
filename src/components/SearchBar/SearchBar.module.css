@@ -19,6 +19,13 @@
     border-radius: 4px;
     margin-right: 10px;
     flex: 1;
+    outline: none;
+    transition: border-color 0.3s ease; 
+}
+
+.fieldSearch:focus {
+    border-color: orange; 
+    box-shadow: 0 0 5px rgba(253, 164, 0, 0.5); 
 }
   
 .searchButton {

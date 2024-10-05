@@ -46,6 +46,7 @@
     position: absolute;
     top: 82%;
     margin-top: 40px;
+    padding: 12px;
 }
   
 .title {
@@ -190,7 +191,7 @@
       height: 60vh; 
       padding: 0;
       position: relative;
-      margin-top: 50px;
+      margin-top: 25px;
     }
 
     .container {
