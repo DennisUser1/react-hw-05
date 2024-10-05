@@ -49,12 +49,21 @@
     top: 65%;
     left: 50%;  
     transform: translate(-50%, -50%);
-    font-size: 28px;
-    color: rgb(253, 122, 0);
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+    animation: l1 1s linear infinite alternate;
+    /* color: rgb(253, 122, 0);
     text-shadow: 
     0 0 5px rgba(255, 255, 255, 0.5),    
     0 0 10px rgba(219, 219, 219, 0.5),  
     0 0 15px rgba(255, 255, 248, 0.5),  
     0 0 20px rgba(255, 255, 255, 0.6), 
-    0 0 25px rgba(255, 255, 255, 0.6);
+    0 0 25px rgba(255, 255, 255, 0.6); */
 } 
+
+@keyframes l1 {
+    to {
+      opacity: 0;
+    }
+}
