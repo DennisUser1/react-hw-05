@@ -1,0 +1,36 @@
+
+.list {
+    display: flex;
+    gap: 16px; 
+    overflow-x: scroll;
+}
+  
+.listItem {
+    width: 60px; 
+    padding: 16px;
+    background-color: #d97706; 
+    color: black;
+    border-radius: 8px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.actorImg {
+    max-width: 40px; 
+    border-radius: 8px; 
+    margin-bottom: 8px; 
+}
+  
+.actorName {
+    font-size: 16px; 
+    font-weight: 500;
+    text-align: center;
+}
+  
+.characterName {
+    height: 24px; 
+    font-size: 14px; 
+    text-align: center;
+}
+  

@@ -17,7 +17,7 @@ export default function HomePage() {
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                if (currentPage === 1) {
+                if (currentPage == 1) {
                     setIsLoading(true);
                 } else {
                     setIsLoadingMore(true);
@@ -25,7 +25,7 @@ export default function HomePage() {
                 const data = await getTrendingMovies(currentPage);
                 setMovieData((prev) => {
                     const uniqueMovies = data.results.filter(movie => 
-                        !prev.some(existingMovie => existingMovie.id === movie.id)
+                        !prev.some(existingMovie => existingMovie.id == movie.id)
                     );
                     return [...prev, ...uniqueMovies];
                 });

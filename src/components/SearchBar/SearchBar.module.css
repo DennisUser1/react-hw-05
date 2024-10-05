@@ -57,16 +57,16 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 12px;
+        gap: 16px;
     }
 
     .fieldSearch {
         min-width: 230px;
-        height: 36px;
+        height: 40px;
         margin-right: 0px;
     }
 
     .searchButton { 
-        padding: 6px 10px;
+        padding: 8px 12px;
     }
 }

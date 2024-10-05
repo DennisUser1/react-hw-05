@@ -10,8 +10,16 @@ header {
    /* margin-bottom: 50px; */
 }
 
-.logoBox {
-    font-size: 22px;
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.logoText {
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navigationBox {

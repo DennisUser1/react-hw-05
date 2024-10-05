@@ -4,7 +4,7 @@ const LoadMoreBtn = ({ onClick}) => {
   return (
     <div className={styles.loadMoreWrapper}>
       <button className={styles.btnShowMore} onClick={onClick}>
-        Load more
+        Load More
       </button>
     </div>
   );
