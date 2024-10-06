@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchMovieReviews } from "../../services/tmdbMovieAPI.js";
+import { getMovieReviews } from "../../services/tmdbMovieAPI.js";
 import Loader from "../Loader/Loader";
 import styles from "./MovieReviews.module.css";
 
@@ -19,8 +19,8 @@ export default function MovieReviews() {
       setHasError(null);
       
       try {
-        const response = await fetchMovieReviews(movieId);
-        if (response.results.length === 0) {
+        const response = await getMovieReviews(movieId);
+        if (response.results.length == 0) {
           setHasError("No reviews available for this movie."); 
         } else {
           setReviewList(response.results); 
