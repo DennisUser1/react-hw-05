@@ -1,0 +1,59 @@
+.error {
+    color: #ef4040;
+    text-align: center;
+    padding-bottom: 20px;  
+}
+
+.reviewsList {
+    padding: 0 20px; 
+}
+  
+.reviewItem {
+    margin-bottom: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    padding: 10px; 
+}
+  
+.authorReviewName {
+    margin-bottom: 10px;
+    color: #ffcc00; 
+}
+  
+.reviewContentWrapper {
+    /* display: flex;  */
+    gap: 10px; 
+    align-items: flex-start;
+    color: #fff;
+}
+  
+.reviewImage {
+    width: 200px;  
+    height: 200px;   
+    /* border-radius: 50%;   */
+}
+  
+.defaultImage {
+    width: 200px; 
+    height: 200px; 
+    /* border-radius: 50%;  */
+}
+  
+.reviewContent {
+    flex: 1;  
+}
+  
+.reviewRating {
+    font-weight: bold;  
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.reviewRatingValue {
+    margin-left: 8px;
+}
+  
+.reviewDescription {
+    margin: 0;  
+}
+  

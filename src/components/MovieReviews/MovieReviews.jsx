@@ -46,7 +46,7 @@ export default function MovieReviews() {
               <h3 className={styles.authorReviewName}>{'Author: ' + author}</h3>
               <div className={styles.reviewContentWrapper}>
                 <img
-                  className={styles.reviewImage}
+                  className={avatar_path ? styles.reviewImage : styles.defaultImage} 
                   src={avatar_path ? `https://image.tmdb.org/t/p/w300${avatar_path}` : defaultImg}
                   alt={author + ' avatar'}
                 />

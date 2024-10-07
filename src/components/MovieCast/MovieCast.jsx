@@ -31,7 +31,7 @@ export default function MovieCast() {
           setHasCast(false);
           return;
         }
-        const onlyActors = data.filter(actor => actor.known_for_department === "Acting");
+        const onlyActors = data.filter(actor => actor.known_for_department == "Acting");
         setActors(onlyActors);
         if (!onlyActors.length) {
           setHasCast(false);
@@ -55,7 +55,7 @@ export default function MovieCast() {
 
   return (
     <div>
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <p className={styles.errorCast}>{error}</p>}
       {!hasCast ? (
         <p className={styles.noCast}>No actors found for this movie.</p>
       ) : (
@@ -66,9 +66,18 @@ export default function MovieCast() {
                 src={actor.profile_path ? `https://image.tmdb.org/t/p/w500${actor.profile_path}` : defaultImg}
                 alt={actor.name}
                 className={styles.actorImg}
+                  style={
+                    actor.profile_path
+                      ? {}
+                      : { width: '160px', height: '240px' } 
+                  }
               />
-              <p className={styles.actorName}>{actor.name}</p>
-              <p className={styles.characterName}>Character: {actor.character}</p> 
+              <p className={`${styles.actorName} ${styles.alternativeText}`}>
+                {actor.name || "Name not available"}
+              </p>
+              <p className={`${styles.characterName} ${styles.alternativeText}`}>
+                {actor.character ? `Character: ${actor.character}` : "Character: information not available"}
+              </p>
             </li>
           ))}
         </ul>

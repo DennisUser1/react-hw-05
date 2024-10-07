@@ -2,6 +2,11 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  scrollbar-color: color-mix(in oklch, currentColor 45%, transparent) transparent;
+}
+
+*:hover {
+  scrollbar-color: color-mix(in oklch, currentColor 80%, transparent) transparent;
 }
 
 h1,
@@ -41,6 +46,6 @@ img {
 }
 
 body {
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }
 
