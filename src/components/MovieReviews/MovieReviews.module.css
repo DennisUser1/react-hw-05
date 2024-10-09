@@ -66,5 +66,30 @@
   
 .reviewDescription {
     margin: 0;  
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 180px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.7) transparent;
 }
   
+.reviewDate  {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.boldTextDate {
+    font-weight: 600;
+}
+
+@media screen and (min-width: 430px) {
+    .reviewHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .authorReviewName {
+        margin-right: 10px; 
+    }
+}

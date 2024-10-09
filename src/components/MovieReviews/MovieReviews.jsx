@@ -41,25 +41,30 @@ export default function MovieReviews() {
       {hasError && <p className={styles.error}>{hasError}</p>}
       {reviewList.length > 0 && (
         <ul className={styles.reviewsList}>
-          {reviewList.map(({ id, author, content, author_details: { avatar_path, rating } }) => (
+          {reviewList.map(({ id, author, content, author_details: { avatar_path, rating }, created_at }) => (
             <li className={styles.reviewItem} key={id}>
-              <h3 className={styles.authorReviewName}>{'Author: ' + author}</h3>
-              <div className={styles.reviewContentWrapper}>
-                <img
-                  className={avatar_path ? styles.reviewImage : styles.defaultImage} 
-                  src={avatar_path ? `https://image.tmdb.org/t/p/w300${avatar_path}` : defaultImg}
-                  alt={author + ' avatar'}
-                />
-                <div className={styles.reviewContent}>
-                  <p className={styles.reviewRating}>
-                    Rating: 
-                    <span className={styles.reviewRatingValue}>
-                      {rating ? rating : 0}
-                    </span>
+                <div className={styles.reviewHeader}>
+                  <h3 className={styles.authorReviewName}>{'Author: ' + author}</h3>
+                  <p className={styles.reviewDate}>
+                    <span className={styles.boldTextDate}>Date:</span> {created_at ? new Date(created_at).toLocaleDateString() : 'N/A'}
                   </p>
-                  <p className={styles.reviewDescription}>{content}</p>
                 </div>
-              </div>
+                <div className={styles.reviewContentWrapper}>
+                  <img
+                    className={avatar_path ? styles.reviewImage : styles.defaultImage} 
+                    src={avatar_path ? `https://image.tmdb.org/t/p/w300${avatar_path}` : defaultImg}
+                    alt={author + ' avatar'}
+                  />
+                  <div className={styles.reviewContent}>
+                    <p className={styles.reviewRating}>
+                      Rating: 
+                      <span className={styles.reviewRatingValue}>
+                        {rating ? rating : 0}
+                      </span>
+                    </p>
+                    <p className={styles.reviewDescription}>{content}</p>
+                  </div>
+                </div>
             </li>
           ))}
         </ul>
