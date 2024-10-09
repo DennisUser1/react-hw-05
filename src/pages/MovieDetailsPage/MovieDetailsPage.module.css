@@ -48,6 +48,7 @@
     text-align: center;
     padding: 10px 20px 10px;
     font-size: 26px;
+    text-transform: uppercase;
 }
 
 .details {
@@ -149,7 +150,11 @@
     overflow-x: hidden;
     max-height: 200px;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.7) transparent;
+    scrollbar-color: rgba(0, 0, 0, 0.98) transparent;
+}
+
+.overviewText::-webkit-scrollbar-track {
+    background: transparent; 
 }
 
 @media screen and (max-width: 430px) {
@@ -231,6 +236,7 @@
 
     .titleDesktop {
         font-size: 26px;
+        text-transform: uppercase;
     }
 
     .details {

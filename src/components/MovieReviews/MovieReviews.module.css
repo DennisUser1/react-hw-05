@@ -70,7 +70,11 @@
     overflow-x: hidden;
     max-height: 180px;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.7) transparent;
+    scrollbar-color: rgba(255, 204, 0, 0.7) transparent;
+}
+
+.reviewDescription::-webkit-scrollbar-track {
+    background: transparent; 
 }
   
 .reviewDate  {
