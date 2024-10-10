@@ -73,7 +73,7 @@
 }
 
 .infoTagline {
-    padding: 6px 20px 10px 0;
+    padding: 6px 0 10px 0;
     text-align: center;
     font-style: italic;
     color: orange;
@@ -150,7 +150,7 @@
     overflow-x: hidden;
     max-height: 200px;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.98) transparent;
+    scrollbar-color: rgba(255, 204, 0, 0.7) transparent;
 }
 
 .overviewText::-webkit-scrollbar-track {
