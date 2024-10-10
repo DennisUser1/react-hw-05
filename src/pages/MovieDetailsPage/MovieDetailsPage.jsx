@@ -109,7 +109,7 @@ export default function MovieDetailsPage() {
               <div className={styles.videoWrapper}>
                 <iframe
                   className={styles.trailerVideo}
-                  src={`https://www.youtube.com/embed/${trailer.key}`}
+                  src={`https://www.youtube.com/embed/${trailer.key}?controls=1&showinfo=0&rel=0`}
                   title="Movie Trailer"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -147,9 +147,9 @@ export default function MovieDetailsPage() {
             ? movieData.genres.map((genre) => genre.name).join(" | ")
             : "No genres available."}
         </span>
-        <h3 className={styles.subTitle}>Duration</h3>
+        <h3 className={styles.subTitle}>Running time</h3>
         <span className={styles.runtimeText}>
-          {movieData?.runtime ? `${movieData.runtime} minutes` : "Duration not available."}
+          {movieData?.runtime ? `${movieData.runtime} minutes` : "Runtime not available."}
         </span>
         <h3 className={styles.subTitle}>Country</h3>
         <span className={styles.countryText}>
@@ -175,4 +175,4 @@ export default function MovieDetailsPage() {
       </Suspense>
     </section>
   );
-}
+};

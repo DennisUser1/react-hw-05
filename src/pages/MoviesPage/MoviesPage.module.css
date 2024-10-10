@@ -9,8 +9,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
+}
+
+.pageInfo {
+    margin-bottom: 36px;
+    color: #3368f1;
 }
   
 .prevNextBtn {
@@ -22,7 +27,8 @@
     outline: none;
     border: none;
     border-radius: 8px;
-    padding: 8px 16px;
+    width: 90px;
+    height: 40px;
     transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
 }
   

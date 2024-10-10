@@ -6,6 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import MovieList from "../../components/MovieList/MovieList";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import ScrollTopBtn from "../../components/ScrollTopBtn/ScrollTopBtn";
 
 export default function HomePage() {
     const [movieData, setMovieData] = useState([]);
@@ -71,6 +72,7 @@ export default function HomePage() {
                     </div>
                 )}
             </div>
+            <ScrollTopBtn />
         </>
     );    
 };

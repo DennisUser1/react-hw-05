@@ -85,8 +85,13 @@ export default function MoviesPage() {
               onClick={handlePrev}
               disabled={disablePrev}
             >
-              Prev
+              Previous
             </button>
+            
+            <span className={styles.pageInfo}>
+              Page {page} of {totalPages}
+            </span>
+
             <button
               className={styles.prevNextBtn}
               onClick={handleNext}
