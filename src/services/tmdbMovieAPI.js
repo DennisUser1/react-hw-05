@@ -94,3 +94,12 @@ export async function getMovieReviews(movieId) {
     throw handleApiError(error);
   }
 }
+
+export async function getMovieTrailer(movieId) {
+  try {
+    const response = await axios.get(`movie/${movieId}/videos`, options);
+    return response.data.results.find(video => video.type == "Trailer" && video.site == "YouTube");
+  } catch (error) {
+    throw handleApiError(error);
+  }
+} 

@@ -1,52 +1,58 @@
 import { Link, useParams, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef, Suspense } from "react";
-import { getDetailsMovie } from "../../services/tmdbMovieAPI";
+import { getDetailsMovie, getMovieTrailer } from "../../services/tmdbMovieAPI";
 import Loader from "../../components/Loader/Loader";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import { MdStar } from "react-icons/md";
 import styles from "./MovieDetailsPage.module.css";
+import Panzoom from "@panzoom/panzoom";
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
   const [movieData, setMovieData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
+  const [trailer, setTrailer] = useState(null);
   const location = useLocation();
-  const backLink = useRef(location.state || "/");
+  const backLink = useRef(location.state?.from || "/");
 
-  const defaultImgDesktop = "https://dummyimage.com/1440x900/cdcdcd/000000.png&text=No+Image";
-  const defaultImgTablet = "https://dummyimage.com/768x1024/cdcdcd/000000.png&text=No+Image";
-  const defaultImgMobile = "https://dummyimage.com/375x812/cdcdcd/000000.png&text=No+Image";
+  const defaultImg =
+    "https://dummyimage.com/1440x900/cdcdcd/000000.png&text=No+Image";
 
   useEffect(() => {
-    async function fetchMovieDetails() {
+    const fetchMovieDetails = async () => {
       try {
-        setLoading(true);
         const data = await getDetailsMovie(movieId);
         setMovieData(data);
+        const trailerData = await getMovieTrailer(movieId);
+        setTrailer(trailerData);
       } catch {
         setError(true);
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchMovieDetails();
   }, [movieId]);
 
   const toggleFullscreen = (img) => {
+    const handleFullscreenChange = () => {
+      if (document.fullscreenElement == img) {
+        const panzoomInstance = Panzoom(img, {
+          maxScale: 4,
+          contain: "outside",
+        });
+        img.parentElement.addEventListener("wheel", panzoomInstance.zoomWithWheel);
+      } else {
+        img.parentElement.removeEventListener("wheel", () => {});
+      }
+    };
+
     if (document.fullscreenElement) {
       document.exitFullscreen();
     } else {
-      if (img.requestFullscreen) {
-        img.requestFullscreen();
-      } else if (img.mozRequestFullScreen) {
-        img.mozRequestFullScreen();
-      } else if (img.webkitRequestFullscreen) {
-        img.webkitRequestFullscreen();
-      } else if (img.msRequestFullscreen) {
-        img.msRequestFullscreen();
-      }
+      img.requestFullscreen();
+      document.addEventListener("fullscreenchange", handleFullscreenChange);
     }
   };
 
@@ -57,15 +63,15 @@ export default function MovieDetailsPage() {
       </Link>
       {loading && <Loader />}
       {error && <NotFoundPage />}
-      {!error && !loading && movieData && (
+      {movieData && !loading && !error && (
         <div className={styles.imageContainer}>
           <h1 className={styles.titleMobile}>{movieData.title}</h1>
           <img
             className={styles.image}
             srcSet={`
-              ${movieData.backdrop_path || movieData.poster_path ? `https://image.tmdb.org/t/p/w300/${movieData.backdrop_path || movieData.poster_path}` : defaultImgMobile} 375w,
-              ${movieData.backdrop_path || movieData.poster_path ? `https://image.tmdb.org/t/p/w780/${movieData.backdrop_path || movieData.poster_path}` : defaultImgTablet} 768w,
-              ${movieData.backdrop_path || movieData.poster_path ? `https://image.tmdb.org/t/p/original/${movieData.backdrop_path || movieData.poster_path}` : defaultImgDesktop} 1440w
+              ${movieData.backdrop_path || movieData.poster_path ? `https://image.tmdb.org/t/p/w300/${movieData.backdrop_path || movieData.poster_path}` : defaultImg} 375w,
+              ${movieData.backdrop_path || movieData.poster_path ? `https://image.tmdb.org/t/p/w780/${movieData.backdrop_path || movieData.poster_path}` : defaultImg} 768w,
+              ${movieData.backdrop_path || movieData.poster_path ? `https://image.tmdb.org/t/p/original/${movieData.backdrop_path || movieData.poster_path}` : defaultImg} 1440w
             `}
             sizes="(max-width: 480px) 100vw, 
                    (max-width: 768px) 80vw, 
@@ -73,17 +79,31 @@ export default function MovieDetailsPage() {
             src={
               movieData.backdrop_path || movieData.poster_path
                 ? `https://image.tmdb.org/t/p/original/${movieData.backdrop_path || movieData.poster_path}`
-                : defaultImgDesktop
+                : defaultImg
             }
             alt={movieData.title}
             onClick={(e) => toggleFullscreen(e.currentTarget)}
           />
+          {trailer && (
+            <div className={styles.trailerContainer}>
+              <h2>Watch Trailer</h2>
+              <div className={styles.videoWrapper}>
+                <iframe
+                  className={styles.trailerVideo}
+                  src={`https://www.youtube.com/embed/${trailer.key}`}
+                  title="Movie Trailer"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          )}
           <div className={styles.infoOverlay}>
-          <h1 className={styles.titleDesktop}>{movieData.title}</h1>
+            <h1 className={styles.titleDesktop}>{movieData.title}</h1>
             <div className={styles.details}>
               <span className={styles.rating}>
                 <MdStar size={18} className={styles.iconStarDetail} />
-                {movieData.vote_average.toFixed(1)} 
+                {movieData.vote_average.toFixed(1)}
                 <span className={styles.separator}>|</span>
               </span>
               <span className={styles.releaseDate}>
@@ -94,33 +114,31 @@ export default function MovieDetailsPage() {
         </div>
       )}
       <h2 className={styles.infoMovieTitle}>Additional information</h2>
-
       <div className={styles.additionalContainer}>
         <h2 className={styles.infoTagline}>
-          {movieData && movieData.tagline ? movieData.tagline : "No tagline available."}
+          {movieData?.tagline || "No tagline available."}
         </h2>
         <h3 className={styles.subTitle}>Overview</h3>
         <span className={styles.overviewText}>
-          {movieData && movieData.overview ? movieData.overview : "No overview available."}
+          {movieData?.overview || "No overview available."}
         </span>
         <h3 className={styles.subTitle}>Genres</h3>
         <span className={styles.genreText}>
-          {movieData && movieData.genres && movieData.genres.length > 0
+          {movieData?.genres.length > 0
             ? movieData.genres.map((genre) => genre.name).join(" | ")
             : "No genres available."}
         </span>
         <h3 className={styles.subTitle}>Duration</h3>
         <span className={styles.runtimeText}>
-          {movieData && movieData.runtime ? `${movieData.runtime} minutes` : "Duration not available."}
+          {movieData?.runtime ? `${movieData.runtime} minutes` : "Duration not available."}
         </span>
         <h3 className={styles.subTitle}>Country</h3>
         <span className={styles.countryText}>
-          {movieData && movieData.production_countries && movieData.production_countries.length > 0
-            ? movieData.production_countries.map((country) => country.name).join(", ")
+          {movieData?.production_countries.length > 0
+            ? movieData.production_countries.map((country) => country.name).join(" | ")
             : "No country information available."}
         </span>
       </div>
-
       <ul className={styles.linksList}>
         <li>
           <Link to="cast" className={styles.linkTo}>

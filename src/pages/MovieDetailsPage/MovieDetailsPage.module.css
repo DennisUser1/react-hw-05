@@ -157,6 +157,29 @@
     background: transparent; 
 }
 
+.trailerContainer {
+    background-color: rgba(0, 0, 0, 0.8);  
+    border-radius: 10px;  
+    padding: 20px 20px 0 20px;  
+    text-align: center;  
+    margin: 0 auto 12px auto;  
+    max-width: 100vw;  
+    height: 95vh;
+    color: #fff;  
+}
+
+.trailerContainer h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.trailerVideo {
+    border: none; 
+    width: 100%;  
+    height: 80vh;
+}
+
 @media screen and (max-width: 430px) {
     .image {
         object-fit: contain;
@@ -197,7 +220,19 @@
     .titleDesktop {
         display: none;
     }
-    
+
+    .trailerContainer { 
+        max-width: 100vw;  
+        height: 30vh;
+    }
+    .trailerVideo {
+        border: none; 
+        width: 100%;  
+        height: 20vh;
+    }
+    .trailerContainer h2 {
+        margin-bottom: 15px;
+    }
 }
 
 @media screen and (min-width: 480px) and (max-width: 1280px) {
@@ -220,6 +255,16 @@
 
     .titleDesktop {
         display: none;
+    }
+
+    .trailerContainer { 
+        max-width: 100vw;  
+        height: 58vh;
+    }
+    .trailerVideo {
+        border: none; 
+        width: 100%;  
+        height: 44vh;
     }
 }
 
@@ -245,5 +290,17 @@
 
     .separator {
         margin-left: 10px;
+    }
+}
+
+@media screen and (min-width: 1520px) {
+    .trailerContainer { 
+        max-width: 100vw;  
+        height: 96vh;
+    }
+    .trailerVideo {
+        border: none; 
+        width: 100%;  
+        height: 82vh;
     }
 }

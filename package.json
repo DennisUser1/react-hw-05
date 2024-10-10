@@ -12,6 +12,7 @@
   "author": "Denis <denidin9@yahoo.com>",
   "license": "ISC",
   "dependencies": {
+    "@panzoom/panzoom": "^4.5.1",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
