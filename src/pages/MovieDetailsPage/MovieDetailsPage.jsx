@@ -35,6 +35,7 @@ export default function MovieDetailsPage() {
     fetchMovieDetails();
   }, [movieId]);
 
+
   const toggleFullscreen = (img) => {
     const handleFullscreenChange = () => {
       if (document.fullscreenElement == img) {
@@ -42,19 +43,37 @@ export default function MovieDetailsPage() {
           maxScale: 4,
           contain: "outside",
         });
-        img.parentElement.addEventListener("wheel", panzoomInstance.zoomWithWheel);
-      } else {
-        img.parentElement.removeEventListener("wheel", () => {});
+        
+        const wheelHandler = panzoomInstance.zoomWithWheel.bind(panzoomInstance);
+        img.parentElement.addEventListener("wheel", wheelHandler);
+        const touchStartHandler = (event) => {
+          if (event.touches.length == 2) {
+            const distance = Math.sqrt(
+              (event.touches[0].clientX - event.touches[1].clientX) ** 2 +
+              (event.touches[0].clientY - event.touches[1].clientY) ** 2
+            );
+            panzoomInstance.zoomIn(distance);
+          }
+        };
+
+        img.parentElement.addEventListener("touchstart", touchStartHandler);
+        
+        document.addEventListener("fullscreenchange", () => {
+          if (!document.fullscreenElement) {
+            img.parentElement.removeEventListener("wheel", wheelHandler);
+            img.parentElement.removeEventListener("touchstart", touchStartHandler);
+          }
+        });
       }
     };
 
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    } else {
-      img.requestFullscreen();
-      document.addEventListener("fullscreenchange", handleFullscreenChange);
-    }
-  };
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    img.requestFullscreen();
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+  }
+};
 
   return (
     <section className={styles.movieDetails}>
