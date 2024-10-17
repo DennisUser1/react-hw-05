@@ -109,7 +109,7 @@ export default function MovieDetailsPage() {
               <div className={styles.videoWrapper}>
                 <iframe
                   className={styles.trailerVideo}
-                  src={`https://www.youtube.com/embed/${trailer.key}?controls=1&showinfo=0&rel=0`}
+                  src={`https://www.youtube.com/embed/${trailer.key}?controls=1&showinfo=0&rel=0&origin=https://react-hw-05-chi.vercel.app/`}
                   title="Movie Trailer"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
